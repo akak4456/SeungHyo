@@ -1,3 +1,6 @@
 [submodule "frontend"]
 	path = frontend
 	url = https://github.com/akak4456/SeungHyo-frontend.git
+[submodule "docker-compose"]
+	path = docker-compose
+	url = https://github.com/akak4456/SeungHyo-DockerCompose.git
