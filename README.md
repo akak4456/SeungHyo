@@ -4,9 +4,7 @@
 
 ## 프로젝트 레포 구조
 
-[SeungHyo-Local](https://github.com/akak4456/SeungHyo-Local.git): 승효 프로젝트의 로컬 개발 환경 셋업을 담당함. Local 개발환경에 포함되는 프로젝트는 다음과 같음
-
-- [SeungHyo-Frontend](https://github.com/akak4456/SeungHyo-Frontend.git): 승효 프로젝트의 프론트엔드를 담당함. 리액트로 구현하였음.
+[SeungHyo-Frontend](https://github.com/akak4456/SeungHyo-Frontend.git): 승효 프로젝트의 프론트엔드를 담당함. 리액트로 구현하였음.
 
 [SeungHyo-DockerCompose](https://github.com/akak4456/SeungHyo-DockerCompose.git): 승효 프로젝트를 서버에 배포할 때 필요한 docker-compose 파일들을 정의함
 
