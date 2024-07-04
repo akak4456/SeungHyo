@@ -1,0 +1,47 @@
+name: Docker
+
+on:
+  push:
+    tags:
+      - "v*" # v로 시작하는 태그에 대해 실행 (예: v1.0, v2.1 등)
+  workflow_dispatch: # 수동 실행을 위한 트리거 추가
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # frontend 배포 시작
+      # frontend 리포지토리 체크아웃
+      - name: Checkout external repository
+        uses: actions/checkout@v2
+        with:
+          repository: akak4456/SeungHyo-frontend
+          path: frontend-repo
+      # Docker 메타 정보 설정(frontend)
+      - name: Docker meta for frontend
+        id: docker_meta_frontend
+        uses: crazy-max/ghaction-docker-meta@v1
+        with:
+          images: adele559/seunghyo-react
+          tag-semver: |
+            {{version}}
+            {{major}}.{{minor}}
+      # Docker Buildx 설정
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      # DockerHub 로그인
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      # Docker 이미지 빌드 및 푸시(frontend)
+      - name: Build and push frontend
+        uses: docker/build-push-action@v2
+        with:
+          context: ./frontend-repo
+          file: ./frontend-repo/Dockerfile.prod
+          platforms: linux/amd64
+          push: true
+          tags: ${{ steps.docker_meta_frontend.outputs.tags }}
+          labels: ${{ steps.docker_meta_frontend.outputs.labels }}
+      # frontend 배포 종료
