@@ -14,7 +14,7 @@ jobs:
       - name: Checkout external repository
         uses: actions/checkout@v2
         with:
-          repository: akak4456/SeungHyo-frontend
+          repository: akak4456/SeungHyo-Frontend
           path: frontend-repo
       # Docker 메타 정보 설정(frontend)
       - name: Docker meta for frontend
